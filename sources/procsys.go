@@ -54,7 +54,7 @@ type lustreProcsysSource struct {
 
 func (s *lustreProcsysSource) generateLNETTemplates(filter string) {
 	metricMap := map[string][]lustreHelpStruct{
-		"lnet": {
+		"kernel/debug/lnet": {
 			{"catastrophe", "catastrophe_enabled", "Returns 1 if currently in catastrophe mode", s.gaugeMetric, false, extended},
 			{"console_backoff", "console_backoff_enabled", "Returns non-zero number if console_backoff is enabled", s.gaugeMetric, false, extended},
 			{"console_max_delay_centisecs", "console_max_delay_centiseconds", "Minimum time in centiseconds before the console logs a message", s.gaugeMetric, false, extended},
@@ -91,7 +91,7 @@ func (s *lustreProcsysSource) generateLNETTemplates(filter string) {
 
 func newLustreProcSysSource() LustreSource {
 	var l lustreProcsysSource
-	l.basePath = filepath.Join(ProcLocation, "sys")
+	l.basePath = SysLocation
 	if LnetEnabled != disabled {
 		l.generateLNETTemplates(LnetEnabled)
 	}
