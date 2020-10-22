@@ -22,7 +22,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/marquis-wang/lustre_exporter/sources"
+	"github.com/lukeyeager/lustre_exporter/sources"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/expfmt"
