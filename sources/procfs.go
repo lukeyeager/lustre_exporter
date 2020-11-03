@@ -277,6 +277,7 @@ func (s *lustreProcfsSource) generateClientMetricTemplates(filter string) {
 			{"xattr_cache", "xattr_cache_enabled", "Returns '1' if extended attribute cache is enabled", s.gaugeMetric, false, extended},
 		},
 		"mdc/*": {
+			{mdStats, "metadata_stats_total", statsHelp, s.counterMetric, true, extended},
 			{"rpc_stats", "rpcs_in_flight", rpcsInFlightHelp, s.gaugeMetric, true, core},
 		},
 		"osc/*": {
@@ -433,6 +434,10 @@ func getStatsOperationMetrics(statsFile string, promName string, helpText string
 		{pattern: "set_info_async", index: 1},
 		{pattern: "connect", index: 1},
 		{pattern: "ping", index: 1},
+		{pattern: "intent_getattr_async", index: 1},
+		{pattern: "link", index: 1},
+		{pattern: "read_page", index: 1},
+		{pattern: "rename", index: 1},
 	}
 	for _, operation := range operationSlice {
 		opStat := regexCaptureString(operation.pattern+" .*", statsFile)
